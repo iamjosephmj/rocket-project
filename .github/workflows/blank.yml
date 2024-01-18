@@ -18,5 +18,9 @@ jobs:
         with:
           java-version: '19'
           distribution: 'temurin' 
+
       - name: Run unit tests
         run: ./gradlew test
+
+      - name: Run lint
+        run: ./gradlew lint
