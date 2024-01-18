@@ -12,7 +12,7 @@ internal class PublishedAtMapper @Inject constructor(
     operator fun invoke(publishedAt: String): String {
         return try {
             val zonedDateTime = getZonedDateTime(publishedAt = publishedAt)
-            "${zonedDateTime.hour}:${zonedDateTime.minute} - ${zonedDateTime.dayOfMonth}/${zonedDateTime.month}/${zonedDateTime.year}"
+            "${zonedDateTime.dayOfMonth}/${zonedDateTime.month}/${zonedDateTime.year}"
         } catch (ex: DateTimeParseException) {
             application.getString(R.string.date_time_value_invalid)
         }
