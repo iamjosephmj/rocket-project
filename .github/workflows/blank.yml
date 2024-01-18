@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  unit-tests:
+  ci-checks:
     runs-on: ubuntu-latest
 
     steps:
