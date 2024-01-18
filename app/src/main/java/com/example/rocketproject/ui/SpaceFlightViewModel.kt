@@ -21,12 +21,12 @@ internal class SpaceFlightViewModel @Inject constructor(
 
     val viewState: StateFlow<ViewState> = _viewState.asStateFlow()
 
-    init {
-        fetchFlights()
-    }
-
-    private fun fetchFlights() {
+    fun startFlightDataFetch() {
         viewModelScope.launch {
+            _viewState.update {
+                ViewState.Loading
+            }
+
             getSpaceFlights().onSuccess { spaceFlights ->
                 _viewState.update {
                     ViewState.SpaceFlightsData(spaceFlights)
@@ -37,13 +37,6 @@ internal class SpaceFlightViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    fun retry() {
-        _viewState.update {
-            ViewState.Loading
-        }
-        fetchFlights()
     }
 }
 

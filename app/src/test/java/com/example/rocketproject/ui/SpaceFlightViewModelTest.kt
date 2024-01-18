@@ -34,6 +34,7 @@ internal class SpaceFlightViewModelTest {
         whenever(getSpaceFlights()) doReturn expectedItem
 
         val viewModel = viewModel()
+        viewModel.startFlightDataFetch()
 
         val viewState = viewModel.viewState.value
         val result = (viewState as ViewState.SpaceFlightsData).spaceFlights
@@ -47,6 +48,7 @@ internal class SpaceFlightViewModelTest {
         whenever(getSpaceFlights()) doReturn error
 
         val viewModel = viewModel()
+        viewModel.startFlightDataFetch()
 
         val viewState = viewModel.viewState.value
         assertThat(viewState).isEqualTo(ViewState.Error)
@@ -54,36 +56,10 @@ internal class SpaceFlightViewModelTest {
 
 
     @Test
-    fun `WHEN retry button is clicked AND space flight data is available, THEN update the view state`() = runTest {
-        val expectedItem = Result.success(
-            listOf(
-                SpaceFlightsItem(
-                    title = "title",
-                    summary = "summary",
-                    publishedAt = "publishedAt"
-                )
-            )
-        )
-        whenever(getSpaceFlights()) doReturn expectedItem
-
+    fun `WHEN viewModel is created, THEN the viewState should hold Loading state`() {
         val viewModel = viewModel()
-        viewModel.retry()
 
         val viewState = viewModel.viewState.value
-        val result = (viewState as ViewState.SpaceFlightsData).spaceFlights
-        assertThat(result).isEqualTo(expectedItem.getOrThrow())
-
-    }
-
-    @Test
-    fun `WHEN retry button is clicked AND space flight data fetching fails, THEN update the view state`() = runTest {
-        val error = Result.failure<List<SpaceFlightsItem>>(Exception("network error"))
-        whenever(getSpaceFlights()) doReturn error
-
-        val viewModel = viewModel()
-        viewModel.retry()
-
-        val viewState = viewModel.viewState.value
-        assertThat(viewState).isEqualTo(ViewState.Error)
+        assertThat(viewState).isEqualTo(ViewState.Loading)
     }
 }
