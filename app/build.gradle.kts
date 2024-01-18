@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.application")
     kotlin("kapt")
+    id("com.android.application")
     id("kotlin-android")
     id("kotlinx-serialization")
     id("com.google.dagger.hilt.android")

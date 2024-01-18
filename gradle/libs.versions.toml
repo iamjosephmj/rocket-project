@@ -1,5 +1,4 @@
 [versions]
-
 kotlin_version = "1.9.22"
 lottie_version = "6.3.0"
 kotlinx_coroutines_version = "1.7.1"
@@ -18,11 +17,9 @@ kotlinx_coroutines_test_version = "1.8.0-RC2"
 truth_version = "1.2.0"
 
 [plugins]
-
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin_version" }
 
 [libraries]
-
 lottie_compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie_version" }
 
 core_ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core_ktx_version" }
