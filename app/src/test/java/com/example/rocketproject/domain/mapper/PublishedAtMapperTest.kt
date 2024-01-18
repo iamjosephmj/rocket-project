@@ -21,7 +21,7 @@ internal class PublishedAtMapperTest {
 
     @Test
     fun `WHEN UseCase is invoked AND the ZonedDateTime is valid, THEN return the formatted date time`() {
-        val expected = "0:32 - 18/JANUARY/2024"
+        val expected = "18/JANUARY/2024"
 
         val result = mapper("2024-01-18T00:32:36Z")
 
