@@ -31,10 +31,6 @@ android {
         compose = true
     }
 
-    lint {
-        showAll = false
-    }
-
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.8"
     }
