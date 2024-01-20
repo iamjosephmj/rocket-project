@@ -1,5 +1,6 @@
 package com.example.rocketproject.ui.compose
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -16,6 +17,7 @@ internal fun RenderSpaceFlightsUI(
     modifier: Modifier = Modifier
 ) {
     Scaffold(
+        modifier = modifier,
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)
         }
@@ -24,7 +26,9 @@ internal fun RenderSpaceFlightsUI(
         SpaceFlightsScreen(
             viewState = viewState,
             onRetry = populateSpaceFlightsDataInUI,
-            modifier = modifier.padding(contentPadding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(contentPadding)
         )
     }
 }

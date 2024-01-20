@@ -4,11 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import com.example.rocketproject.ui.compose.RenderSpaceFlightsUI
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +49,8 @@ internal class SpaceFlightActivity : ComponentActivity() {
             RenderSpaceFlightsUI(
                 populateSpaceFlightsDataInUI = viewModel::populateSpaceFlightsDataInUI,
                 viewState = viewState,
-                snackbarHostState = snackbarHostState
+                snackbarHostState = snackbarHostState,
+                modifier = Modifier.fillMaxSize()
             )
         }
     }
