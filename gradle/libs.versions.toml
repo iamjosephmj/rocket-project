@@ -15,6 +15,7 @@ junit_version = "4.13.2"
 mockito_version = "5.2.1"
 kotlinx_coroutines_test_version = "1.8.0-RC2"
 truth_version = "1.2.0"
+turbine_version = "1.0.0"
 
 [plugins]
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin_version" }
@@ -41,6 +42,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit_version" }
 mockito_kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito_version" }
 kotlinx_coroutines_test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx_coroutines_test_version" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth_version" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine_version" }
 
 compose_bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose_bom_version" }
 compose_ui = { group = "androidx.compose.ui", name = "ui" }
@@ -48,4 +50,3 @@ compose_foundation = { group = "androidx.compose.foundation", name = "foundation
 compose_ui_tooling_preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose_material3 = { group = "androidx.compose.material3", name = "material3" }
 compose_ui_tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-

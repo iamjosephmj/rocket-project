@@ -73,6 +73,7 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.truth)
+    testImplementation(libs.turbine)
 
     // Preview
     debugImplementation(libs.compose.ui.tooling)
