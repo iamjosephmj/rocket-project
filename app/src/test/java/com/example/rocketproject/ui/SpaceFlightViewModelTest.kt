@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.example.rocketproject.common.MainDispatcherRule
 import com.example.rocketproject.domain.GetSpaceFlightsUseCase
 import com.example.rocketproject.domain.model.SpaceFlightsItem
+import com.example.rocketproject.exception.RocketProjectException
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
@@ -48,7 +49,7 @@ internal class SpaceFlightViewModelTest {
     @Test
     fun `WHEN space flight data fetching fails, THEN update the view state`() = runTest {
         val networkError = "network error"
-        val error = Result.failure<List<SpaceFlightsItem>>(Exception(networkError))
+        val error = Result.failure<List<SpaceFlightsItem>>(RocketProjectException(networkError))
         whenever(getSpaceFlights()) doReturn error
 
         val viewModel = viewModel()
