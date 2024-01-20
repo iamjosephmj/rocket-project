@@ -1,13 +1,15 @@
 package com.example.rocketproject.domain
 
 import com.example.rocketproject.data.FlightsRepository
+import com.example.rocketproject.domain.mapper.HttpExceptionMapper
 import com.example.rocketproject.domain.mapper.PublishedAtMapper
 import com.example.rocketproject.domain.model.SpaceFlightsItem
 import javax.inject.Inject
 
 internal class GetSpaceFlightsUseCase @Inject constructor(
     private val repository: FlightsRepository,
-    private val publishedAtMapper: PublishedAtMapper
+    private val publishedAtMapper: PublishedAtMapper,
+    private val httpExceptionMapper: HttpExceptionMapper
 ) {
     suspend operator fun invoke(): Result<List<SpaceFlightsItem>> {
         return repository.getFlights().fold(
@@ -21,7 +23,7 @@ internal class GetSpaceFlightsUseCase @Inject constructor(
                 })
             },
             onFailure = {
-                Result.failure(it)
+                Result.failure(httpExceptionMapper(it))
             }
         )
     }

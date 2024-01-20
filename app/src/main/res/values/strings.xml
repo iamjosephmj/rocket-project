@@ -2,5 +2,6 @@
     <string name="app_name">Rocket Project</string>
     <string name="retry">Retry</string>
     <string name="date_time_value_invalid">Publishing date invalid</string>
-    <string name="something_went_wrong">Something went wrong</string>
+    <string name="something_went_wrong">Something went wrong, Please try again later.</string>
+    <string name="no_network">We have trouble in connecting to the server. Please try again later.</string>
 </resources>

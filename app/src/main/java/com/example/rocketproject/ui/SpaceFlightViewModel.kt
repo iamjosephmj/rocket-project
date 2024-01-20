@@ -1,12 +1,11 @@
 package com.example.rocketproject.ui
 
-import android.app.Application
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rocketproject.R
 import com.example.rocketproject.domain.GetSpaceFlightsUseCase
 import com.example.rocketproject.domain.model.SpaceFlightsItem
+import com.example.rocketproject.exception.RocketProjectException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,8 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class SpaceFlightViewModel @Inject constructor(
-    private val getSpaceFlights: GetSpaceFlightsUseCase,
-    private val application: Application
+    private val getSpaceFlights: GetSpaceFlightsUseCase
 ) : ViewModel() {
     private val _viewState = MutableStateFlow<ViewState>(ViewState.Loading)
 
@@ -45,7 +43,9 @@ internal class SpaceFlightViewModel @Inject constructor(
     private suspend fun startSpaceFlightsFetchApi() {
         getSpaceFlights()
             .onSuccess(::handleSuccess)
-            .onFailure(::handleError)
+            .onFailure {
+                handleError(it as RocketProjectException)
+            }
     }
 
     private fun showLoading() {
@@ -60,13 +60,11 @@ internal class SpaceFlightViewModel @Inject constructor(
         }
     }
 
-    private fun handleError(ex: Throwable) {
+    private fun handleError(ex: RocketProjectException) {
         viewModelScope.launch {
             _viewState.emit(ViewState.Error)
 
-            val errorMessage =
-                ex.localizedMessage ?: application.getString(R.string.something_went_wrong)
-            _uiEvent.emit(UIEvent.ShowSnackBar(errorMessage))
+            _uiEvent.emit(UIEvent.ShowSnackBar(ex.errorMessage))
         }
     }
 }
