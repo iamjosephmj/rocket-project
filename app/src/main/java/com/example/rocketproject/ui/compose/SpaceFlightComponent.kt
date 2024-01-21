@@ -37,7 +37,7 @@ internal fun SpaceFlightItemComponent(
 }
 
 @Composable
-fun SpaceFlightItem(
+private fun SpaceFlightItem(
     title: String,
     description: String,
     dateTime: String,
@@ -76,10 +76,10 @@ fun SpaceFlightItem(
 
 @Preview
 @Composable
-internal fun RenderSpaceSpaceFlightItem() {
+private fun RenderSpaceSpaceFlightItem() {
     SpaceFlightItem(
         title = "Astrobotic confirms Peregrine reentry plans",
         description = "Astrobotic confirmed Jan. 17 that its Peregrine lunar lander will reenter over the South Pacific on Jan. 18, concluding a 10-day mission that failed to land on the moon because of a propellant leak.",
-        dateTime = "21:15 12/12/2023"
+        dateTime = "12/12/2023"
     )
 }

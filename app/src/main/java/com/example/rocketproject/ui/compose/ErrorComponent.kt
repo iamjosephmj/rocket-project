@@ -50,7 +50,7 @@ internal fun ErrorComponent(
 
 @Preview
 @Composable
-fun RenderErrorComponent() {
+private fun RenderErrorComponent() {
     ErrorComponent(
         onRetry = {}
     )
